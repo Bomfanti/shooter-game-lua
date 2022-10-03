@@ -1,5 +1,4 @@
 require("player")
-require ("bullet")
 
 
 function love.load()
@@ -11,6 +10,6 @@ function love.update(dt)
 end
 
 function love.draw()
-   Player:draw(s)
+   Player:draw()
 end
 

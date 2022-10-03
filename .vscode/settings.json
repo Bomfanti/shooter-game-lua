@@ -6,5 +6,8 @@
     "Lua.workspace.checkThirdParty": false,
     "Lua.diagnostics.globals": [
         "menu"
+    ],
+    "Lua.diagnostics.disable": [
+        "lowercase-global"
     ]
 }
