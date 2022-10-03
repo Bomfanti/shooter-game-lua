@@ -11,44 +11,6 @@ end
 function Player: update(dt)
     self:move(dt)
     self:checkBoundaris()
-    if love.mouse.isDown(1) and self.canShoot then
-		if game.time > .25 then -- prevents a bullet from being shot when the game starts
-			if self.heat <= 0 then
-                local target = nil
-                -- trackpad shooting mode
-                if game.trackpadMode and self.closestEnemy ~= player and self.closestEnemy ~= nil then
-                    target = self.closestEnemy.position + vector(math.random(-35, 35), math.random(-35, 35))
-                else
-					local mx, my = game.camera:mousePosition() -- find where the mouse is in the game
-					mx, my = mx, my
-                    target = vector(mx, my)
-                end
-                local bullet = game:addBullet(Bullet:new(
-                    self.position,
-                    target,
-                    self.velocity
-                ))
-                bullet:setSource(self)
-                -- critical hits
-                if math.random() <= self.criticalChance then
-                    bullet:setDamage(self.bulletDamage * self.damageMultiplier * self.criticalMultiplier)
-                    bullet.critical = true
-                else
-                    bullet:setDamage(self.bulletDamage * self.damageMultiplier)
-                    bullet.critical = false
-                end
-                bullet:setSpeed(self.bulletVelocity)
-                bullet:setRadius(self.bulletRadius)
-                bullet:setLife(self.bulletLife)
-                bullet.dropoffDistance = self.bulletDropoffDistance
-                bullet.dropoffAmount = self.bulletDropoffAmount
-
-				self.heat = self.rateOfFire
-
-                signal.emit('playerShot', self, bullet)
-			end
-		end
-	end
 end
 
 function Player:move(dt)
