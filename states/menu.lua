@@ -4,7 +4,7 @@ menu.itens = {
     {
         title = "NEW GAME",
         action = function()
-            switch(game)
+            love.event.quit()
         end,
     },
     {

@@ -1,4 +1,4 @@
-require("player")
+require("objects/player")
 
 
 function love.load()

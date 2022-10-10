@@ -1,17 +1,20 @@
 Player = {}
 
+
 function Player:load()
     self.x = 50
     self.y = love.graphics.getHeight()/2
     self.width = 25
     self.height = 25
     self.speed = 500
+
 end
 
 function Player: update(dt)
     self:move(dt)
     self:checkBoundaris()
 end
+
 
 function Player:move(dt)
     if love.keyboard.isDown("w") then
@@ -41,6 +44,11 @@ function Player:checkBoundaris()
     end
 end
 
-function Player: draw()
+function Player:draw()
     love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
+
+end
+
+function Player:faceMouse()
+    return math.atan2(Player.y - love.mouse.getY(), Player.x - love.mouse.getX()) + math.pi
 end
